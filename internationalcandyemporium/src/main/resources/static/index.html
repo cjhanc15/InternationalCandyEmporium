@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Candy Emporium</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .header {
+            background-color: #E9EFEA;
+            color: #9A0C38;
+            padding: 20px 0;
+        }
+        .search-bar {
+            margin: 20px 0;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .product {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        .profile {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="profile">NU <br> Profile <br> View Cart <br> Sign in <br> Log Out</span>
+            <h1>International Candy Emporium</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+        <div class="products">
+            <div class="product">
+                <img src="#" alt="Product Image">
+                <p>Product name, description</p>
+            </div>
+            <!-- ... Repeat for other products ... -->
+        </div>
+    </div>
+</body>
+</html>
