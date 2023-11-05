@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Candy Emporium</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+        <div class="profile">
+            <button class="circle-button" onclick="toggleDropdown()">NU</button>
+            <div class="dropdown" id="dropdownMenu">
+                <a href="/profile/">Profile</a>
+                <a href="/cart/">View Cart</a>
+                <a href="/login/">Sign in</a>
+                <a href="/logout/">Log Out</a>
+            </div>
+        </div>
+        <h1>International Candy Emporium</h1>
+    </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+        <div class="products">
+            <div class="product">
+                <img src="#" alt="Product Image">
+                <p>Product name, description</p>
+            </div>
+        </div>
+    </div>
+    <script>
+      function toggleDropdown() {
+          const dropdown = document.getElementById('dropdownMenu');
+          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      }
+    </script>
+</body>
+</html>
