@@ -62,3 +62,7 @@ h1 {
 .profile {
     float: right;
 }
+
+.productImg {
+    height:250px;
+}
