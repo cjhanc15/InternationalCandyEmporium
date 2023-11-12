@@ -4,17 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration Form</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h2>Registration Form</h2>
-    <form th:action="@{/register}" th:object="${user}" method="post">
-        <label>First Name: <input type="text" th:field="*{firstName}" required></label><br>
-        <label>Last Name: <input type="text" th:field="*{lastName}" required></label><br>
-        <label>Email Address: <input type="email" th:field="*{emailAddress}" required></label><br>
-        <label>Phone Number: <input type="tel" th:field="*{phoneNumber}" required></label><br>
-        <label>Username: <input type="text" th:field="*{username}" required></label><br>
-        <label>Password: <input type="password" th:field="*{password}" required></label><br>
-        <input type="submit" value="Register">
-    </form>
+    <div class="container">
+        <div class="header">
+            <div class="profile">
+                <button class="circle-button" onclick="toggleDropdown()">NU</button>
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="/profile/">Profile</a>
+                    <a href="/cart/">View Cart</a>
+                    <a href="/login/">Sign in</a>
+                    <a href="/logout/">Log Out</a>
+                    <a href="/admin/">Admin</a>
+                </div>
+            </div>
+            <h1>International Candy Emporium</h1>
+        </div>
+        <h2>Register</h2>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <label>First Name: <input type="text" th:field="*{firstName}" required></label><br>
+            <label>Last Name: <input type="text" th:field="*{lastName}" required></label><br>
+            <label>Email Address: <input type="email" th:field="*{emailAddress}" required></label><br>
+            <label>Phone Number: <input type="tel" th:field="*{phoneNumber}" required></label><br>
+            <label>Username: <input type="text" th:field="*{username}" required></label><br>
+            <label>Password: <input type="password" th:field="*{password}" required></label><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
 </body>
 </html>

@@ -41,4 +41,9 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("logout");
         return modelAndView;
     }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
+    }
 }
