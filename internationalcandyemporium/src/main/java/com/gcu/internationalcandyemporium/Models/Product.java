@@ -6,24 +6,22 @@ import javax.validation.constraints.Size;
 
 public class Product {
 
-  private int id;
-
   @NotBlank(message = "Name field is required")
   private String name;
 
   @Size(max = 1000, message = "Description field too long")
   private String description;
 
+  @NotBlank(message = "Must have image")
   private String imageUrl;
 
   @Min(value = 0, message = "Price must be positive")
-  private double price;
+  private Double price;
 
-  @Min(value = 0, message = "Quantity must be non-negative")
-  private int quantity;
+  @Min(value = 0, message = "Quantity must be positive")
+  private Integer quantity;
 
-  public Product(int id, String name, String description, String imageUrl, double price, int quantity) {
-    this.id = id;
+  public Product(String name, String description, String imageUrl, @Min(value = 0, message = "Price must be positive") Double price, Integer quantity) {
     this.name = name;
     this.description = description;
     this.imageUrl = imageUrl;
@@ -31,14 +29,6 @@ public class Product {
     this.quantity = quantity;
 }
 
-  public int getId() {
-    return id;
-  }
-  
-  public void setId(int id) {
-    this.id = id;
-  }
-  
   public String getName() {
     return name;
   }
@@ -63,26 +53,25 @@ public class Product {
       this.imageUrl = imageUrl;
   }
   
-  public double getPrice() {
+  public Double getPrice() {
     return price;
   }
   
-  public void setPrice(double price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
   
-  public int getQuantity() {
+  public Integer getQuantity() {
     return quantity;
   }
   
-  public void setQuantity(int quantity) {
+  public void setQuantity(Integer quantity) {
     this.quantity = quantity;
   }
 
   @Override
   public String toString() {
       return "Product{" +
-             "id=" + id +
              ", name='" + name + '\'' +
              ", description='" + description + '\'' +
              ", imageUrl='" + imageUrl + '\'' +

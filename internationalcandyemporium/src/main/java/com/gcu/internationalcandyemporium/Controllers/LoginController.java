@@ -48,6 +48,6 @@ public class LoginController {
         model.addAttribute("products", service.getAllProducts());
 
         //return to homepage
-        return "homeTest";
+        return "redirect:/";
     }
 }

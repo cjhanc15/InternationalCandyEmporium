@@ -20,15 +20,19 @@ public class AdminController {
 
     @GetMapping("/addProduct")
     public String showAddProductForm(Model model) {
-        model.addAttribute("product", new Product(0, null, null, null, 0, 0));
+        model.addAttribute("product", new Product(null, null, null, (double) 0, 0));
         return "addProduct";
     }
 
     @PostMapping("/addProduct")
     public String addProduct(@ModelAttribute @Valid Product product, BindingResult result, Model model) {
+        System.out.println("Received product: " + product);
+
         if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
             return "addProduct";
         }
+        
         adminService.addProduct(product);
         return "redirect:/";
     }

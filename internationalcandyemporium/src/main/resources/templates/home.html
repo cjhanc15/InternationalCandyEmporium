@@ -30,7 +30,7 @@
             </div>
             <div th:each="product : ${products}" class="product">
                 <img class="productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
-                <p th:text="${product.name + ', ' + product.description}">Product name, description</p>
+                <p th:text="${product.name + ', ' + product.description + ' -- ' + product.price}">Product name, description</p>
             </div>
         </div>        
     </div>
