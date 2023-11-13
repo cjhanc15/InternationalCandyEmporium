@@ -22,6 +22,15 @@ public class Product {
   @Min(value = 0, message = "Quantity must be non-negative")
   private int quantity;
 
+  public Product(int id, String name, String description, String imageUrl, double price, int quantity) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.imageUrl = imageUrl;
+    this.price = price;
+    this.quantity = quantity;
+}
+
   public int getId() {
     return id;
   }
@@ -68,5 +77,17 @@ public class Product {
   
   public void setQuantity(int quantity) {
     this.quantity = quantity;
+  }
+
+  @Override
+  public String toString() {
+      return "Product{" +
+             "id=" + id +
+             ", name='" + name + '\'' +
+             ", description='" + description + '\'' +
+             ", imageUrl='" + imageUrl + '\'' +
+             ", price=" + price +
+             ", quantity=" + quantity +
+             '}';
   }
 }

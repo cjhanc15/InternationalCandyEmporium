@@ -1,17 +1,32 @@
 package com.gcu.internationalcandyemporium.Controllers;
 
+import com.gcu.internationalcandyemporium.Business.ProductsService;
+import com.gcu.internationalcandyemporium.Models.Product;
+import java.util.List; // Correct  for List
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 @RequestMapping("/")
 public class HomeController {
-    @GetMapping
-    public String home() {
+
+    @Autowired
+    private ProductsService productsService;
+
+    @GetMapping("/")
+    public String home(Model model) {
+        List<Product> products = productsService.getAllProducts();
+        // Add a logging statement to inspect the products list
+        System.out.println("Products: " + products);
+        model.addAttribute("products", products);
         return "home";
     }
+    
 
     //future profile
     @GetMapping("/profile")

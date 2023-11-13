@@ -20,7 +20,7 @@ public class AdminController {
 
     @GetMapping("/addProduct")
     public String showAddProductForm(Model model) {
-        model.addAttribute("product", new Product());
+        model.addAttribute("product", new Product(0, null, null, null, 0, 0));
         return "addProduct";
     }
 

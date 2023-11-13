@@ -25,15 +25,14 @@
             <input type="text" placeholder="Search">
         </div>
         <div class="products">
-            <div class="product">
-                <img class="productImg" src=@"${productImage}" alt="Product Image" onerror="this.src='missingCandy.webp'">
-                <p>Product name, description</p>
+            <div th:if="${products.empty}">
+                <p>No Products Available</p>
             </div>
-            <div class="product">
-                <img class="productImg" src=@"${productImage}" alt="Product Image" onerror="this.src='missingCandy.webp'">
-                <p>Product name, description</p>
+            <div th:each="product : ${products}" class="product">
+                <img class="productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
+                <p th:text="${product.name + ', ' + product.description}">Product name, description</p>
             </div>
-        </div>
+        </div>        
     </div>
     <script>
       function toggleDropdown() {
