@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+        <div class="profile">
+            <button class="circle-button" onclick="toggleDropdown()">NU</button>
+            <div class="dropdown" id="dropdownMenu">
+                <a href="/profile/">Profile</a>
+                <a href="/cart/">View Cart</a>
+                <a href="/login/">Sign in</a>
+                <a href="/logout/">Log Out</a>
+                <a href="/admin">Admin</a>
+            </div>
+        </div>
+        <h1>International Candy Emporium</h1>
+    </div>
+    <h2>Add a Product</h2>
+    <form action="#" th:action="@{/admin/addProduct}" th:object="${product}" method="post">
+      <!-- name -->
+      <label for="productName">Product Name:</label><br>
+      <input type="text" th:field="*{name}"><br>
+      <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+      <!-- description -->
+      <label for="productDesc">Product Description:</label><br>
+      <input type="text" th:field="*{description}"><br>
+      <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
+      <!-- image -->
+      <label for="productImage">Product Image URL:</label><br>
+      <input type="text" th:field="*{imageUrl}"><br>
+      <p th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}">Image Error</p>
+      <!-- price -->
+      <label for="productPrice">Price:</label><br>
+      <input type="number" th:field="*{price}" min="0" step="0.25"><br>
+      <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
+      <!-- qty -->
+      <label for="productQty">Quantity:</label><br>
+      <input type="number" th:field="*{quantity}"><br><br>
+      <p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Qty Error</p>
+      <!-- submit -->
+      <input class="button" type="submit" value="Add Product">
+    </form>
+  </div>
+</body>
+</html>

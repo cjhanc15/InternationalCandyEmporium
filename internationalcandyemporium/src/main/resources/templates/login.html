@@ -15,16 +15,16 @@
     <h2 th:text="${title}">This is my default text</h2><br/>
     <form action="#" th:action="@{processLogin}" th:object="${userModel}" method="post">
         <div>
-            <td>User Name:</td><td><input type="text" th:field="*{username}"></td></br>
+            <label>Username:</label><td><input type="text" th:field="*{username}"></td></br>
             <span style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User Name Error</span>
         </div>
 
         <div>
-            <td>Password:</td><td><input type="password" th:field="*{password}"></td></br>
+            <label>Password:</label><td><input type="password" th:field="*{password}"></td></br>
             <span style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
         </div>    
         
-        <button colspan="2"><input type="submit" value="Submit"></button>
+        <input class="button" type="submit" value="Submit">
     </form>
     <p>No account? Sign up <a href="/register">here</a></p>
 </html>

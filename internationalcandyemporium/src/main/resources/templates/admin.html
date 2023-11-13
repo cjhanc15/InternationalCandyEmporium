@@ -1,38 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin</title>
-  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-        <div class="profile">
-            <button class="circle-button" onclick="toggleDropdown()">NU</button>
-            <div class="dropdown" id="dropdownMenu">
-                <a href="/profile/">Profile</a>
-                <a href="/cart/">View Cart</a>
-                <a href="/login/">Sign in</a>
-                <a href="/logout/">Log Out</a>
-                <a href="/admin">Admin</a>
-            </div>
-        </div>
-        <h1>International Candy Emporium</h1>
-    </div>
-    <h2>Add a Product</h2>
-    <form>
-      <label for="productName">Product Name:</label><br>
-      <input type="text" id="productName" name="productName"><br>
-      <label for="productDesc">Product Description:</label><br>
-      <input type="text" id="productDesc" name="productDesc"><br>
-      <label for="productPrice">Price:</label><br>
-      <input type="number" id="productPrice" name="productPrice"><br>
-      <label for="productQty">Quantity:</label><br>
-      <input type="number" id="productQty" name="productQty" min="0" step="0.01"><br><br>
-      <input type="submit" value="Add Product">
-    </form>
-  </div>
+  Admin
+  <a href="/admin/addProduct">Add Product</a>
+  <a>Edit Product</a>
 </body>
 </html>
