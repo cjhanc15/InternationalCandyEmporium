@@ -1,9 +1,12 @@
 package com.gcu.internationalcandyemporium.Models;
 
+import org.springframework.data.annotation.Id;
+
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-@Table("user") // Assuming your table name is "user"
+@Table(name = "user")
 public class User {
 
     @Id
@@ -74,11 +77,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
-    }
-}
-
- public void setPassword(String password) {
         this.password = password;
     }
 }

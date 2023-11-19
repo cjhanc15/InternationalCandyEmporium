@@ -8,7 +8,7 @@ public class DatabaseInit {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/InternationalCandyEmporium";
         String user = "root";  
-        String password = "password";  
+        String password = "root";  
 
         Connection connection = null;
 try {

@@ -2,7 +2,7 @@ package com.gcu.Registration.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.gcu.Registration.model.User;
+import com.gcu.internationalcandyemporium.Models.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
     // Additional custom queries can be added here if needed
