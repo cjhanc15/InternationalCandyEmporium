@@ -1,7 +1,8 @@
 package com.gcu.internationalcandyemporium.Controllers;
 
-import com.gcu.internationalcandyemporium.Business.ProductsService;
 import com.gcu.internationalcandyemporium.Models.Product;
+import com.gcu.internationalcandyemporium.Service.ProductsService;
+
 import java.util.List; // Correct  for List
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

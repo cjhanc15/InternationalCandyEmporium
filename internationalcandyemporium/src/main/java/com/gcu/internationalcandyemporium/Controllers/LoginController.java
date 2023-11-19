@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gcu.internationalcandyemporium.Business.ProductsServiceInterface;
-import com.gcu.internationalcandyemporium.Business.SecurityService;
 import com.gcu.internationalcandyemporium.Models.User;
+import com.gcu.internationalcandyemporium.Service.ProductsServiceInterface;
+import com.gcu.internationalcandyemporium.Service.SecurityService;
 
 @Controller
 @RequestMapping("/login")

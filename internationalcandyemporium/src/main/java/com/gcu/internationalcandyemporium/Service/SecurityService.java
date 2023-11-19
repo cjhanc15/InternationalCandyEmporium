@@ -1,4 +1,4 @@
-package com.gcu.internationalcandyemporium.Business;
+package com.gcu.internationalcandyemporium.Service;
 
 import org.springframework.stereotype.Service;
 

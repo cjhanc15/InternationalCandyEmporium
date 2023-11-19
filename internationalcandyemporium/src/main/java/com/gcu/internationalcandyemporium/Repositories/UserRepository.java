@@ -1,4 +1,4 @@
-package com.gcu.Registration.repository;
+package com.gcu.internationalcandyemporium.Repositories;
 
 import org.springframework.data.repository.CrudRepository;
 

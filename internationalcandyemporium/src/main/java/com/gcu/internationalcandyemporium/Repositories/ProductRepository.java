@@ -1,8 +1,10 @@
 package com.gcu.internationalcandyemporium.Repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+
 import com.gcu.internationalcandyemporium.Models.Product;
 
-public interface ProductRepository extends JpaRepository<Product, Integer> {
-  //future db implementation
+
+public interface ProductRepository extends CrudRepository<Product, Long> {
+  //empty for now
 }
