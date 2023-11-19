@@ -2,12 +2,10 @@ package com.gcu.internationalcandyemporium.Models;
 
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-@Table(name = "user")
-public class User {
+public class UserModel {
 
     @Id
     private Long id;
@@ -25,6 +23,9 @@ public class User {
     private String phoneNumber;
     private String username;
     private String password;
+
+    public UserModel() {
+    }
 
     // Getters and Setters for firstName
     public String getFirstName() {

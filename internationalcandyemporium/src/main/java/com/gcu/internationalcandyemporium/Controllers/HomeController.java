@@ -1,6 +1,6 @@
 package com.gcu.internationalcandyemporium.Controllers;
 
-import com.gcu.internationalcandyemporium.Models.Product;
+import com.gcu.internationalcandyemporium.Models.ProductModel;
 import com.gcu.internationalcandyemporium.Service.ProductsService;
 
 import java.util.List; // Correct  for List
@@ -21,7 +21,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<Product> products = productsService.getAllProducts();
+        List<ProductModel> products = productsService.getAllProducts();
         // Add a logging statement to inspect the products list
         System.out.println("Products: " + products);
         model.addAttribute("products", products);

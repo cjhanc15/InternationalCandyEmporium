@@ -4,7 +4,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class Product {
+public class ProductModel {
 
   @NotBlank(message = "Name field is required")
   private String name;
@@ -21,7 +21,7 @@ public class Product {
   @Min(value = 0, message = "Quantity must be positive")
   private Integer quantity;
 
-  public Product(String name, String description, String imageUrl, @Min(value = 0, message = "Price must be positive") Double price, Integer quantity) {
+  public ProductModel(String name, String description, String imageUrl, @Min(value = 0, message = "Price must be positive") Double price, Integer quantity) {
     this.name = name;
     this.description = description;
     this.imageUrl = imageUrl;

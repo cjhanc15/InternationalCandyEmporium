@@ -1,9 +1,9 @@
 package com.gcu.internationalcandyemporium.Service;
 
-import com.gcu.internationalcandyemporium.Models.User;
+import com.gcu.internationalcandyemporium.Models.UserModel;
 
 
 public interface RegistrationService {
-    void processRegistration(User user);
+    void processRegistration(UserModel user);
 }
 
