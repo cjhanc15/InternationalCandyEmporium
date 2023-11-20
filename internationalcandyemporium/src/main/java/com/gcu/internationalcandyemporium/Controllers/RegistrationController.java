@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.gcu.internationalcandyemporium.Interfaces.RegistrationServiceInterface;
 import com.gcu.internationalcandyemporium.Models.UserModel;
-import com.gcu.internationalcandyemporium.Service.RegistrationService;
 
 @Controller
 public class RegistrationController {
     
-    private final RegistrationService registrationService;
+    private final RegistrationServiceInterface registrationService;
 
-    public RegistrationController(RegistrationService registrationService) {
+    public RegistrationController(RegistrationServiceInterface registrationService) {
         this.registrationService = registrationService;
     }
 
@@ -31,9 +31,9 @@ public class RegistrationController {
             return "registration";
         }
 
-        registrationService.processRegistration(user);
+        if(registrationService.processRegistration(user) == true) return "redirect:/";
+        else return "registration";
 
-        return "registration-success";
     }
 }
 

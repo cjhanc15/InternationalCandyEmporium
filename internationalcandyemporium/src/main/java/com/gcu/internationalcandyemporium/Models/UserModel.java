@@ -25,6 +25,32 @@ public class UserModel {
     private String password;
 
     public UserModel() {
+
+    }
+
+     // Constructor for getting
+    public UserModel(Long id, String firstName, String lastName, String emailAddress, String phoneNumber, String username, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+    }
+
+     // Constructor for creating
+     public UserModel(String firstName, String lastName, String emailAddress, String phoneNumber, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     // Getters and Setters for firstName

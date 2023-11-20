@@ -1,14 +1,15 @@
-package com.gcu.internationalcandyemporium.Service;
+package com.gcu.internationalcandyemporium.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import com.gcu.internationalcandyemporium.Interfaces.DataAccessInterface;
 import com.gcu.internationalcandyemporium.Models.UserModel;
-import com.gcu.internationalcandyemporium.Data.Entities.UserEntity;
 import com.gcu.internationalcandyemporium.Data.Repositories.UserRepository;
 
 @Service
@@ -19,7 +20,13 @@ public class UserDataService implements DataAccessInterface<UserModel> {
     @SuppressWarnings("unused")
     private javax.sql.DataSource dataSource;
 
+    @Autowired
     private JdbcTemplate jdbcTemplateObject;
+
+    public UserDataService(UserRepository userRepository, JdbcTemplate jdbcTemplate) {
+        this.userRepository = userRepository;
+        this.jdbcTemplateObject = jdbcTemplate;
+    }
 
     public UserDataService(UserRepository userRepository, javax.sql.DataSource dataSource) {
         this.userRepository = userRepository;
@@ -31,11 +38,22 @@ public class UserDataService implements DataAccessInterface<UserModel> {
 
     @Override
     public List<UserModel> findAll() {
-        List<UserModel> users = new ArrayList<>();
+        String sql = "SELECT * FROM USER";
+
+        List<UserModel> users =  new ArrayList<UserModel>();
         try {
-            // Iterable<UserModel> userIterable = userRepository.findAll();
-            users = new ArrayList<UserModel>();
-            // userIterable.forEach(users::add);
+            SqlRowSet srs = jdbcTemplateObject.queryForRowSet(sql);
+            while (srs.next()) {
+                UserModel user = new UserModel(
+                srs.getLong("ID"), 
+                srs.getString("FIRST_NAME"),
+                srs.getString("LAST_NAME"),
+                srs.getString("EMAIL_ADDRESS"),
+                srs.getString("PHONE_NUMBER"),
+                srs.getString("USERNAME"),
+                srs.getString("PASSWORD"));
+                users.add(user);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,6 +65,25 @@ public class UserDataService implements DataAccessInterface<UserModel> {
         // For now, just return null
         return null;
     }
+
+    public UserModel findByUsername(String username) {
+        String sql = "SELECT * FROM USER WHERE username = ?";
+        List<UserModel> users = jdbcTemplateObject.query(sql, (rs, rowNum) -> {
+            UserModel user = new UserModel(
+            rs.getLong("ID"),
+            rs.getString("FIRST_NAME"),
+            rs.getString("LAST_NAME"),
+            rs.getString("EMAIL_ADDRESS"),
+            rs.getString("PHONE_NUMBERS"),
+            rs.getString("USERNAME"),
+            rs.getString("PASSWORD")
+            );
+            return user;
+        }, username);
+    
+        return users.isEmpty() ? null : users.get(0);
+    }
+    
 
     @Override
     public boolean create(UserModel user) {
