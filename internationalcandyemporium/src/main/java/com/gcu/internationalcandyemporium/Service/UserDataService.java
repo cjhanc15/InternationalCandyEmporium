@@ -30,12 +30,12 @@ public class UserDataService implements DataAccessInterface<UserModel> {
     public UserDataService() {}
 
     @Override
-    public List<UserEntity> findAll() {
-        List<UserEntity> users = new ArrayList<>();
+    public List<UserModel> findAll() {
+        List<UserModel> users = new ArrayList<>();
         try {
-            Iterable<UserEntity> userIterable = userRepository.findAll();
-            users = new ArrayList<UserEntity>();
-            userIterable.forEach(users::add);
+            // Iterable<UserModel> userIterable = userRepository.findAll();
+            users = new ArrayList<UserModel>();
+            // userIterable.forEach(users::add);
         } catch (Exception e) {
             e.printStackTrace();
         }

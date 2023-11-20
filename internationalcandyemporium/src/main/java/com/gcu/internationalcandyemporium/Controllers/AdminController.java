@@ -1,7 +1,7 @@
 package com.gcu.internationalcandyemporium.Controllers;
 
+import com.gcu.internationalcandyemporium.Data.ProductsDataService;
 import com.gcu.internationalcandyemporium.Models.ProductModel;
-import com.gcu.internationalcandyemporium.Service.ProductsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +16,11 @@ import javax.validation.Valid;
 public class AdminController {
 
     @Autowired
-    private ProductsService productsService;
+    private ProductsDataService productsDataService;
 
     @GetMapping("/addProduct")
     public String showAddProductForm(Model model) {
-        model.addAttribute("product", new ProductModel(null, null, null, (double) 0, 0));
+        model.addAttribute("product", new ProductModel(null, null, null, null, (double) 0, 0));
         return "addProduct";
     }
 
@@ -33,7 +33,7 @@ public class AdminController {
             return "addProduct";
         }
         
-        // productsService.create(product);
+        productsDataService.create(product);
         return "redirect:/";
     }
 }

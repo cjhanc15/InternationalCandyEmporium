@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class ProductModel {
+  private long id;
 
   @NotBlank(message = "Name field is required")
   private String name;
@@ -21,13 +22,27 @@ public class ProductModel {
   @Min(value = 0, message = "Quantity must be positive")
   private Integer quantity;
 
-  public ProductModel(String name, String description, String imageUrl, @Min(value = 0, message = "Price must be positive") Double price, Integer quantity) {
-    this.name = name;
-    this.description = description;
-    this.imageUrl = imageUrl;
-    this.price = price;
-    this.quantity = quantity;
-}
+    // Constructor for creating new products (ID not included)
+    public ProductModel(String name, String description, String imageUrl, double price, int quantity) {
+      this.name = name;
+      this.description = description;
+      this.imageUrl = imageUrl;
+      this.price = price;
+      this.quantity = quantity;
+  }
+
+  // Constructor for retrieving existing products (includes ID)
+  public ProductModel(Long id, String name, String description, String imageUrl, double price, int quantity) {
+      this.id = id;
+      this.name = name;
+      this.description = description;
+      this.imageUrl = imageUrl;
+      this.price = price;
+      this.quantity = quantity;
+  }
+  public Long getId() {
+    return id;
+  }
 
   public String getName() {
     return name;

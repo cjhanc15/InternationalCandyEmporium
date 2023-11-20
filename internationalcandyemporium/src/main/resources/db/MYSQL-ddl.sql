@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `internationalcandyemporium` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `internationalcandyemporium`;
+
 -- MySQL dump 10.13  Distrib 5.7.26, for osx10.9 (x86_64)
 --
 -- Host: 127.0.0.1    Database: internationalcandyemporium
@@ -22,8 +23,6 @@ USE `internationalcandyemporium`;
 --
 
 DROP TABLE IF EXISTS `USER`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `FIRST_NAME` varchar(50) NOT NULL,
@@ -34,19 +33,36 @@ CREATE TABLE `USER` (
   `PASSWORD` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `USER`
 --
 
 LOCK TABLES `USER` WRITE;
-/*!40000 ALTER TABLE `USER` DISABLE KEYS */;
 -- Insert sample data here, if needed
-/*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+--
+-- Table structure for table `PRODUCT`
+--
+
+DROP TABLE IF EXISTS `PRODUCT`;
+CREATE TABLE `PRODUCT` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` text,
+  `IMAGE_URL` varchar(255),
+  `PRICE` decimal(10,2) NOT NULL,
+  `QUANTITY` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table `PRODUCT`
+LOCK TABLES `PRODUCT` WRITE;
+-- Insert sample data for `PRODUCT` here, if needed
+UNLOCK TABLES;
+
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
