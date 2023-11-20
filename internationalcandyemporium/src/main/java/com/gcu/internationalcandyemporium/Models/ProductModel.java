@@ -22,6 +22,10 @@ public class ProductModel {
   @Min(value = 0, message = "Quantity must be positive")
   private Integer quantity;
 
+    public ProductModel() {
+      
+    }
+
     // Constructor for creating new products (ID not included)
     public ProductModel(String name, String description, String imageUrl, double price, int quantity) {
       this.name = name;

@@ -20,7 +20,7 @@ public class AdminController {
 
     @GetMapping("/addProduct")
     public String showAddProductForm(Model model) {
-        model.addAttribute("product", new ProductModel(null, null, null, null, (double) 0, 0));
+        model.addAttribute("product", new ProductModel(null, null, null, 0, 0));
         return "addProduct";
     }
 
@@ -37,4 +37,3 @@ public class AdminController {
         return "redirect:/";
     }
 }
-
