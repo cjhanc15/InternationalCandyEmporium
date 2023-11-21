@@ -11,14 +11,20 @@ public class SecurityService {
 
     @Autowired
     private UserDataService userDataService;
-    
+
     public boolean authenticate(String username, String password){
-        //RETRIEVE ALL USERS & COMPARE USERNAME & PASSWORD
+        // Retrieve the user by username
         UserModel user = userDataService.findByUsername(username);
-        if(user.getPassword() == password) {
-            System.out.println("Security check: Successful login");
-            return true;
+    
+        if(user != null && password != null) {
+            if(user.getPassword().equals(password)) {
+                System.out.println("Security check: Successful login for user " + username);
+                return true;
+            } else {
+                System.out.println("Security check: Failed login attempt for user " + username);
+            }
         }
         return false;
     }
+    
 }

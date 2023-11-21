@@ -74,7 +74,7 @@ public class UserDataService implements DataAccessInterface<UserModel> {
             rs.getString("FIRST_NAME"),
             rs.getString("LAST_NAME"),
             rs.getString("EMAIL_ADDRESS"),
-            rs.getString("PHONE_NUMBERS"),
+            rs.getString("PHONE_NUMBER"),
             rs.getString("USERNAME"),
             rs.getString("PASSWORD")
             );
@@ -87,14 +87,14 @@ public class UserDataService implements DataAccessInterface<UserModel> {
 
     @Override
     public boolean create(UserModel user) {
-        String sql = "INSERT INTO user (first_name, last_name, email_address, phone_number, password) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO USER (FIRST_NAME, LAST_NAME, EMAIL_ADDRESS, PHONE_NUMBER, USERNAME, PASSWORD) VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            jdbcTemplateObject.update(sql, user.getFirstName(), user.getLastName(), user.getEmailAddress(), user.getPhoneNumber(), user.getPassword());
-            return true;
+            int rows = jdbcTemplateObject.update(sql, user.getFirstName(), user.getLastName(), user.getEmailAddress(), user.getPhoneNumber(), user.getUsername(), user.getPassword());
+            return rows == 1 ? true : false;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
     
   

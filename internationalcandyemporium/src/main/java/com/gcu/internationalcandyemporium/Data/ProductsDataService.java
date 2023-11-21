@@ -25,7 +25,7 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public List<ProductModel> findAll() {
-        String sql = "SELECT * FROM PRODUCTS";
+        String sql = "SELECT * FROM PRODUCT";
 
         List<ProductModel> products =  new ArrayList<ProductModel>();
         try {
@@ -48,13 +48,12 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public ProductModel findById(int id) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public boolean create(ProductModel product) {
-        String sql = "INSERT INTO PRODUCTS(NAME, DESCRIPTION, IMAGE_URL, PRICE, QUANTITY) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO PRODUCT(NAME, DESCRIPTION, IMAGE_URL, PRICE, QUANTITY) VALUES(?, ?, ?, ?, ?)";
         try {
             int rows = jdbcTemplateObject.update(sql, product.getName(), product.getDescription(), product.getImageUrl(), product.getPrice(), product.getQuantity());
             return rows == 1 ? true : false;
@@ -66,13 +65,11 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public boolean update(ProductModel product) {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public boolean delete(ProductModel product) {
-        // TODO Auto-generated method stub
         return true;
     }
 
