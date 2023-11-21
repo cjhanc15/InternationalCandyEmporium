@@ -12,7 +12,6 @@
         <div class="profile">
             <button class="circle-button" onclick="toggleDropdown()">NU</button>
             <div class="dropdown" id="dropdownMenu">
-                <a href="/admin">Admin</a>
                 <a href="/profile/">Profile</a>
                 <a href="/cart/">View Cart</a>
                 <a href="/login/">Sign in</a>
@@ -23,6 +22,7 @@
     </div>
         <div class="search-bar">
             <input type="text" placeholder="Search">
+            <a href="/admin"><button class="button">ADMIN</button></a>
         </div>
         <div class="products">
             <div th:if="${products.empty}">
@@ -31,6 +31,10 @@
             <div th:each="product : ${products}" class="product">
                 <img class="productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
                 <p th:text="${product.name + ', ' + product.description + ' -- ' + product.price}">Product name, description</p>
+            <div class="add-to-cart-container">
+                <input class="quantity-select" type="number" min="1">
+                <button class="add-to-cart">🛒</button>
+            </div>
             </div>
         </div>        
     </div>

@@ -55,6 +55,7 @@ h2{
 }
 .search-bar {
     margin: 20px 0;
+    height: 50px;
 }
 .products {
     display: grid;
@@ -63,8 +64,15 @@ h2{
     padding: 25px;
 }
 .product {
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
+    background-color: #bdd3c0;
     padding: 20px;
+    border-radius: 2%;
+    cursor: pointer;
+}
+
+.product:hover {
+    border: 2px solid #740F2F;
 }
 .profile {
     float: right;
@@ -93,8 +101,39 @@ input {
     color: #ccc;
     height: 50px;
     font-size: x-large;
+    border-radius: 10%;
 }
 
 p {
     font-size: large;
 }
+
+.add-to-cart {
+    font-size: 24px; /* Adjust the size of the '+' sign */
+    text-align: center;
+    width: 50px; /* Width of the button */
+    height: 50px; /* Height of the button */
+    border: 2px solid white; 
+    color: white;/* Border of the button */
+    background-color: rgba(255, 255, 255, 0.5); /* White background with 50% opacity */
+    line-height: 50%; /* Aligns the '+' vertically */
+    border-radius: 50%; /* Makes the button circular */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+
+  .add-to-cart-container {
+    /* position: absolute; */
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
+
+  .add-to-cart:hover {
+    color: #740F2F;
+    border: 2px solid#740F2F;
+  }
+
+  .quantity-select {
+    width: 50px;
+  }
+  
