@@ -23,7 +23,6 @@ public class LoginController {
     
     @GetMapping("/")
     public String display(Model model){
-        //Gives login page a title and puts the information from info box into an object
         model.addAttribute("title", "Login Form");
         model.addAttribute("user", new UserModel());
         return "login";
@@ -31,14 +30,11 @@ public class LoginController {
 
     @PostMapping("/processLogin")
     public String processLogin(@ModelAttribute("user") UserModel user, BindingResult bindingResult, Model model) {
-        // Check for validation errors first
         if (bindingResult.hasErrors()) {
             model.addAttribute("title", "Login Form");
-            // Optionally, add error details to the model here
             return "login";
         }
         
-        // Authenticate the user
         if (!security.authenticate(user.getUsername(), user.getPassword())) {
             model.addAttribute("title", "Login Form");
             model.addAttribute("loginError", "Invalid username or password");

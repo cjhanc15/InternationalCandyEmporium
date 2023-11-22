@@ -12,17 +12,17 @@
         <div class="profile">
             <button class="circle-button" onclick="toggleDropdown()">NU</button>
             <div class="dropdown" id="dropdownMenu">
-                <a href="/profile/">Profile</a>
+                <p onclick="openProfileSettings">Profile</p>
                 <a href="/cart/">View Cart</a>
                 <a href="/login/">Sign in</a>
-                <a href="/logout/">Log Out</a>
+                <a href="/login/">Log Out</a>
             </div>
         </div>
         <h1>International Candy Emporium</h1>
     </div>
         <div class="search-bar">
             <input type="text" placeholder="Search">
-            <a href="/admin"><button class="button">ADMIN</button></a>
+            <button id="adminBtn" class="button">ADMIN</button>
         </div>
         <div class="products">
             <div th:if="${products.empty}">
@@ -30,19 +30,80 @@
             </div>
             <div th:each="product : ${products}" class="product">
                 <img class="productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
-                <p th:text="${product.name + ', ' + product.description + ' -- ' + product.price}">Product name, description</p>
+                <p class="product-description" th:text="${product.name + ', ' + product.description + ' -- $' + product.price}">Product name, description</p>
             <div class="add-to-cart-container">
                 <input class="quantity-select" type="number" min="1">
-                <button class="add-to-cart">🛒</button>
+                <button class="add-to-cart">+</button>
             </div>
             </div>
         </div>        
     </div>
+    <!-- Dialog Container -->
+    <div id="myModal" class="modal">
+  
+    <!-- Dialog content -->
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Add Product</h2>
+      <form th:action="@{/addProduct}" th:object="${product}" method="post">
+        <!-- name -->
+        <label for="name">Product Name:</label><br>
+        <input type="text" th:field="*{name}"><br>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+        <!-- description -->
+        <label for="description">Product Description:</label><br>
+        <input type="text" th:field="*{description}"><br>
+        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
+        <!-- image -->
+        <label for="imageUrl">Product Image URL:</label><br>
+        <input type="url" th:field="*{imageUrl}"><br>
+        <p th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}">Image Error</p>
+        <!-- price -->
+        <label for="price">Price:</label><br>
+        <input type="number" th:field="*{price}" min="0" step="0.01"><br>
+        <p th:if="${#fields.hasErrors('price')}" option value="0" th:errors="*{price}">Price Error</p>
+        <!-- qty -->
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" value="0" th:field="*{quantity}" min="0"><br><br>
+        <p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Qty Error</p>
+        <!-- submit -->
+        <input class="button" type="submit" value="Add Product">
+      </form>
+    </div>
+  
+  </div>
+  
     <script>
       function toggleDropdown() {
           const dropdown = document.getElementById('dropdownMenu');
           dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
       }
+
+      // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("adminBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close-button")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
     </script>
 </body>
 </html>
