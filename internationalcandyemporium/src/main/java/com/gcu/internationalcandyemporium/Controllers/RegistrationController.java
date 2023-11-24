@@ -31,7 +31,7 @@ public class RegistrationController {
             return "registration";
         }
 
-        if(registrationService.processRegistration(user) == true) return "redirect:/";
+        if(registrationService.processRegistration(user) == true) return "redirect:/login/";
         else return "registration";
 
     }
