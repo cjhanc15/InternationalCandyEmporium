@@ -7,4 +7,5 @@ import com.gcu.internationalcandyemporium.Models.ProductModel;
 
 public interface ProductRepository extends CrudRepository<ProductModel, Long> {
   //empty for now
+  void deleteProductById(String productId);
 }
