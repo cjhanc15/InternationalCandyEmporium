@@ -16,6 +16,9 @@ public class ProductsService implements ProductsServiceInterface{
 
     @Autowired
     ProductsDataService productsDataService;
+  
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<ProductModel> getAllProducts() {
@@ -24,5 +27,8 @@ public class ProductsService implements ProductsServiceInterface{
     public void updateProduct(Product product) {
         // Add logic for updating the product
         productRepository.save(product);
+
+    public void deleteProduct(String productId) {
+        productRepository.deleteProductById(productId);
     }
 }
