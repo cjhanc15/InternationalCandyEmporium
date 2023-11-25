@@ -21,4 +21,10 @@ public class ProductsService implements ProductsServiceInterface{
     public List<ProductModel> getAllProducts() {
         return productsDataService.findAll();
     }
+    @Autowired
+    private ProductRepository productRepository;
+
+    public void deleteProduct(String productId) {
+        productRepository.deleteProductById(productId);
+    }
 }
