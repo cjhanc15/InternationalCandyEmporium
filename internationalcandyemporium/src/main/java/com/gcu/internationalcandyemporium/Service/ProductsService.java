@@ -21,4 +21,8 @@ public class ProductsService implements ProductsServiceInterface{
     public List<ProductModel> getAllProducts() {
         return productsDataService.findAll();
     }
+    public void updateProduct(Product product) {
+        // Add logic for updating the product
+        productRepository.save(product);
+    }
 }
