@@ -1,0 +1,25 @@
+@RequestMapping("/products")
+public class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+    @RequestMapping(value = "/update/{productId}", method = RequestMethod.GET)
+    public String updateProduct(@PathVariable String productId, Model model) {
+        Product product = productService.getProductById(productId);
+        model.addAttribute("product", product);
+        return "product/update";  // Assuming you have a Thymeleaf or JSP page for updating a product
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String processUpdateProduct(@ModelAttribute("product") Product product) {
+        productService.updateProduct(product);
+        return "redirect:/products/list";
+    }
+
+    @RequestMapping(value = "/delete/{productId}", method = RequestMethod.GET)
+    public String deleteProduct(@PathVariable String productId) {
+        productService.deleteProduct(productId);
+        return "redirect:/products/list";
+    }
+}
