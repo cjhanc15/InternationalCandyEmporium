@@ -1,0 +1,19 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+@RequestMapping("/products")
+public class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+    @RequestMapping(value = "/delete/{productId}", method = RequestMethod.GET)
+    public String deleteProduct(@PathVariable String productId) {
+        productService.deleteProduct(productId);
+        return "redirect:/products/list";  // Redirect to the product list page after deletion
+    }
+}
