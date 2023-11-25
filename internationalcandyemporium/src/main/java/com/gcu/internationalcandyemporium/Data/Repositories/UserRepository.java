@@ -1,9 +1,13 @@
 package com.gcu.internationalcandyemporium.Data.Repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.gcu.internationalcandyemporium.Models.UserModel;
 
 
-public interface UserRepository extends CrudRepository<UserModel, Long>{
+public interface UserRepository extends MongoRepository<UserModel, String>{
+
+  Optional<UserModel> findByUsername(String username);
 }

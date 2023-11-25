@@ -5,10 +5,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "products")
 public class ProductModel {
   @Id
-  private long id;
+  private String id;
 
   @NotBlank(message = "Name field is required")
   private String name;
@@ -20,7 +22,7 @@ public class ProductModel {
   private String imageUrl;
 
   @Min(value = 0, message = "Price must be positive")
-  private Double price;
+  private Float price;
 
   @Min(value = 0, message = "Quantity must be positive")
   private Integer quantity;
@@ -30,7 +32,7 @@ public class ProductModel {
     }
 
     // Constructor for creating new products (ID not included)
-    public ProductModel(String name, String description, String imageUrl, double price, int quantity) {
+    public ProductModel(String name, String description, String imageUrl, float price, int quantity) {
       this.name = name;
       this.description = description;
       this.imageUrl = imageUrl;
@@ -39,7 +41,7 @@ public class ProductModel {
   }
 
   // Constructor for retrieving existing products (includes ID)
-  public ProductModel(Long id, String name, String description, String imageUrl, double price, int quantity) {
+  public ProductModel(String id, String name, String description, String imageUrl, float price, int quantity) {
       this.id = id;
       this.name = name;
       this.description = description;
@@ -47,7 +49,7 @@ public class ProductModel {
       this.price = price;
       this.quantity = quantity;
   }
-  public Long getId() {
+  public String getId() {
     return id;
   }
 
@@ -75,11 +77,11 @@ public class ProductModel {
       this.imageUrl = imageUrl;
   }
   
-  public Double getPrice() {
+  public Float getPrice() {
     return price;
   }
   
-  public void setPrice(Double price) {
+  public void setPrice(Float price) {
     this.price = price;
   }
   

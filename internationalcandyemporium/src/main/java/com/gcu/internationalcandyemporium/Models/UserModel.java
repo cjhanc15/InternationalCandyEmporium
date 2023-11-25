@@ -1,14 +1,16 @@
 package com.gcu.internationalcandyemporium.Models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+@Document(collection = "users")
 public class UserModel {
 
     @Id
-    private Long id;
+    private String id;
 
     @NotBlank(message = "First Name is required")
     private String firstName;
@@ -29,7 +31,7 @@ public class UserModel {
     }
 
      // Constructor for getting
-    public UserModel(Long id, String firstName, String lastName, String emailAddress, String phoneNumber, String username, String password) {
+    public UserModel(String id, String firstName, String lastName, String emailAddress, String phoneNumber, String username, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,7 +51,7 @@ public class UserModel {
         this.password = password;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

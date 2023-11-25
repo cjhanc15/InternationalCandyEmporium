@@ -1,10 +1,9 @@
 package com.gcu.internationalcandyemporium.Data.Repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.gcu.internationalcandyemporium.Models.ProductModel;
 
 
-public interface ProductRepository extends CrudRepository<ProductModel, Long> {
-  //empty for now
+public interface ProductRepository extends MongoRepository<ProductModel, String> {
 }
