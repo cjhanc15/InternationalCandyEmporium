@@ -74,7 +74,7 @@
         <p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Qty Error</p>
         <!-- submit -->
         <div class="modal-buttons">
-            <input class="button" type="submit" value="Sve ">
+            <input class="button" type="submit" value="Save ">
         </div>
       </form>
     </div>
@@ -138,11 +138,12 @@
     </div>
     
     <script>
-      function toggleDropdown() {
-          const dropdown = document.getElementById('dropdownMenu');
-          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-      }
-// admin modal functionality
+    //
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+        // admin modal functionality
         var modal = document.getElementById("addProductModal");
         var btn = document.getElementById("adminBtn");
         var closeButtons = document.getElementsByClassName("close-button");
@@ -163,40 +164,34 @@
         });
 
 
-    window.onclick = function(event) {
-        if (event.target == viewModal) {
-            viewModal.style.display = "none";
+        // edit/delete modal
+        var editModal = document.getElementById("edit-product-modal");
+        var editBtns = document.getElementsByClassName("edit-product");
+
+        Array.from(editBtns).forEach(function(button) {
+                button.onclick = function() {
+                    editModal.style.display = "block";
+                }
+        });
+
+        //close functionality for all modals
+        var closeButtons = document.getElementsByClassName("close-button");
+
+        for (let i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].onclick = function() {
+                var modal = this.closest(".modal");
+                if (modal) {
+                    modal.style.display = "none";
+                }
+            };
         }
-    }
 
-    // edit/delete modal
-    var editModal = document.getElementById("edit-product-modal");
-    var editBtns = document.getElementsByClassName("edit-product");
-
-    Array.from(editBtns).forEach(function(button) {
-            button.onclick = function() {
-                editModal.style.display = "block";
-            }
-    });
-
-    //close functionality for all modals
-    var closeButtons = document.getElementsByClassName("close-button");
-
-    for (let i = 0; i < closeButtons.length; i++) {
-        closeButtons[i].onclick = function() {
-            var modal = this.closest(".modal");
-            if (modal) {
-                modal.style.display = "none";
+        // Clicking anywhere outside of any modal will close it
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = "none";
             }
         };
-    }
-
-    // Clicking anywhere outside of any modal will close it
-    window.onclick = function(e) {
-        if (e.target.classList.contains('modal')) {
-            e.target.style.display = "none";
-        }
-    };
     </script>
 </body>
 </html>
