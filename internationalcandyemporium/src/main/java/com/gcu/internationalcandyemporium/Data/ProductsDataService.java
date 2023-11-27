@@ -1,14 +1,17 @@
 package com.gcu.internationalcandyemporium.Data;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import com.gcu.internationalcandyemporium.Data.Repositories.ProductRepository;
 import com.gcu.internationalcandyemporium.Interfaces.DataAccessInterface;
 import com.gcu.internationalcandyemporium.Models.ProductModel;
 
@@ -16,11 +19,14 @@ import com.gcu.internationalcandyemporium.Models.ProductModel;
 public class ProductsDataService implements DataAccessInterface<ProductModel> {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
-
-    // @Autowired
-    public ProductsDataService(DataSource dataSource) {
+    @Autowired
+    private ProductRepository productRepository;
+    
+    //@Autowired
+    public ProductsDataService(DataSource dataSource, ProductRepository productRepository) {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -47,8 +53,10 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
     }
 
     @Override
-    public ProductModel findById(int id) {
-        return null;
+    public ProductModel findById(long id) {
+        Optional<ProductModel> productById = productRepository.findById(id);
+
+        return productById.orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
     }
 
     @Override
