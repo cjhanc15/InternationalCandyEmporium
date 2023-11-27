@@ -61,7 +61,7 @@ public class UserDataService implements DataAccessInterface<UserModel> {
     }
 
     @Override
-    public UserModel findById(int id) {
+    public UserModel findById(long id) {
         // For now, just return null
         return null;
     }
