@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Product</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="modal-content">
+    <a href="/">
+      <span class="back-button">🔙</span>
+    </a>
+    <h2 th:text="@{${product.name}}">Product Name</h2>
+    <img class="bigProductImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'"/>
+    <div>
+      <p th:text="@{${product.description}}">This is where the product description will go...</p>
+      <div class="view-product-actions">
+          <label th:text="'$' + @{${product.price}}">$0.00</label>
+          <input class="quantity-select" type="number" min="1">
+          <button id="add-to-cart" class="product-actions">+</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

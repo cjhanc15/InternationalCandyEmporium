@@ -29,7 +29,9 @@
                 <p>No Products Available</p>
             </div>
             <div th:each="product : ${products}" class="product">
-                <img class="view-product productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
+                <a th:href="@{'products/' + ${product.id}}">
+                    <img class="view-product productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
+                </a>
                 <p class="product-description" th:text="${product.name} + ' -- $' + ${product.price}">Product name, description</p>
                 <div class="product-actions-container">
                         <div>
@@ -44,10 +46,9 @@
         </div>
                 
     </div>
-    <!-- Dialog Container -->
+    <!-- Add Product Dialog Container -->
     <div id="addProductModal" class="modal">
-  
-    <!-- Dialog content -->
+    <!-- Add Product Dialog content -->
     <div class="modal-content">
       <span class="close-button">&times;</span>
       <h2>Add Product</h2>
@@ -58,7 +59,7 @@
         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
         <!-- description -->
         <label for="description">Product Description:</label><br>
-        <input type="text" th:field="*{description}"><br>
+        <textarea rows="5" type="text" th:field="*{description}"></textarea><br>
         <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
         <!-- image -->
         <label for="imageUrl">Product Image URL:</label><br>
@@ -80,60 +81,39 @@
     </div>
   
   </div>
-
-  <!-- modal to view individual product specs -->
-  <div id="view-product-modal" class="modal">
-  
-    <!-- Dialog content -->
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Product Name</h2>
-      <img class="bigProductImg" src="missingCandy.webp"/>
-      <div>
-        <p>This is where the product description will go...</p>
-        <div class="view-product-actions">
-            <input class="quantity-select" type="number" min="1">
-            <button id="add-to-cart" class="product-actions">+</button>
-        </div>
-      </div>
-    </div>
-  </div>
     <!-- Edit Product Modal -->
     <div id="edit-product-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>Edit Product</h2>
-        <form id="editProductForm" method="post">
-            <!-- Hidden input to store product ID -->
-            <input type="hidden" id="editProductId" name="productId" value="">
-            
-            <!-- Product Name -->
-            <label for="editProductName">Product Name:</label><br>
-            <input type="text" id="editProductName" name="productName" value=""><br>
-            
-            <!-- Product Description -->
-            <label for="editProductDescription">Product Description:</label><br>
-            <textarea id="editProductDescription" name="productDescription"></textarea><br>
-            
-            <!-- Product Image URL -->
-            <label for="editProductImageUrl">Product Image URL:</label><br>
-            <input type="url" id="editProductImageUrl" name="productImageUrl" value=""><br>
-            
-            <!-- Product Price -->
-            <label for="editProductPrice">Price:</label><br>
-            <input type="number" id="editProductPrice" name="productPrice" min="0" step="0.01" value=""><br>
-            
-            <!-- Product Quantity -->
-            <label for="editProductQuantity">Quantity:</label><br>
-            <input type="number" id="editProductQuantity" name="productQuantity" min="0" value=""><br><br>
-            
-            <!-- Save & Delete Buttons -->
-            <div class="modal-buttons">
-                <button class="button">Delete</button>
-                <input type="submit" class="button" value="Save">
-            </div>
-        </form>
+            <span class="close-button">&times;</span>
+            <h2>Edit Product</h2>
+            <form th:action="@{/products/update}" th:object="${product}" method="post">
+                <!-- Product Name -->
+                <label for="editProductName">Product Name:</label><br>
+                <input type="text" th:field="*{name}" id="editProductName" name="productName"><br>
+                
+                <!-- Product Description -->
+                <label for="editProductDescription">Product Description:</label><br>
+                <textarea rows="5" th:field="*{description}" id="editProductDescription" name="productDescription"></textarea><br>
+                
+                <!-- Product Image URL -->
+                <label for="editProductImageUrl">Product Image URL:</label><br>
+                <input type="url" th:field="*{imageUrl}" id="editProductImageUrl" name="productImageUrl"><br>
+                
+                <!-- Product Price -->
+                <label for="editProductPrice">Price:</label><br>
+                <input type="number" th:field="*{price}" id="editProductPrice" name="productPrice" min="0" step="0.01"><br>
+                
+                <!-- Product Quantity -->
+                <label for="editProductQuantity">Quantity:</label><br>
+                <input type="number" th:field="*{quantity}" id="editProductQuantity" name="productQuantity" min="0"><br><br>
+                
+                <!-- Save & Delete Buttons -->
+                <div class="modal-buttons">
+                    <button type="submit" class="button" name="action" value="save">Save</button>
+                    <button type="button" class="button" name="action" value="delete">Delete</button>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -151,18 +131,6 @@
         btn.onclick = function() {
             modal.style.display = "block";
         }
-
-        // view product modal
-        var viewModal = document.getElementById("view-product-modal");
-        var viewBtns = document.getElementsByClassName("view-product");
-        var viewSpan = viewModal.querySelector(".close-button");
-
-        Array.from(viewBtns).forEach(function(button) {
-            button.onclick = function() {
-                viewModal.style.display = "block";
-            }
-        });
-
 
         // edit/delete modal
         var editModal = document.getElementById("edit-product-modal");

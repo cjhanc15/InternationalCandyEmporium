@@ -207,3 +207,15 @@ p {
     display: flex;
     justify-content: flex-end;  
   }
+
+  textarea {
+    font-size: x-large;
+    margin-bottom: 10px;
+  }
+
+  .back-button {
+    position: absolute;
+    font-size: 50px;
+    margin-left: -400px;
+    cursor: pointer;
+  }
