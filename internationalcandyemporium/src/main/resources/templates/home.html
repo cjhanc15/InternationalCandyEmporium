@@ -35,7 +35,9 @@
                 <p class="product-description" th:text="${product.name} + ' -- $' + ${product.price}">Product name, description</p>
                 <div class="product-actions-container">
                         <div>
-                            <button class="edit-product product-actions">🖊️</button>
+                            <a th:href="@{'products/edit/' + ${product.id}}">
+                                <button class="edit-product product-actions">🖊️</button>
+                            </a>
                         </div>
 
                         <div>
@@ -79,43 +81,7 @@
         </div>
       </form>
     </div>
-  
   </div>
-    <!-- Edit Product Modal -->
-    <div id="edit-product-modal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Edit Product</h2>
-            <form th:action="@{/products/update}" th:object="${product}" method="post">
-                <!-- Product Name -->
-                <label for="editProductName">Product Name:</label><br>
-                <input type="text" th:field="*{name}" id="editProductName" name="productName"><br>
-                
-                <!-- Product Description -->
-                <label for="editProductDescription">Product Description:</label><br>
-                <textarea rows="5" th:field="*{description}" id="editProductDescription" name="productDescription"></textarea><br>
-                
-                <!-- Product Image URL -->
-                <label for="editProductImageUrl">Product Image URL:</label><br>
-                <input type="url" th:field="*{imageUrl}" id="editProductImageUrl" name="productImageUrl"><br>
-                
-                <!-- Product Price -->
-                <label for="editProductPrice">Price:</label><br>
-                <input type="number" th:field="*{price}" id="editProductPrice" name="productPrice" min="0" step="0.01"><br>
-                
-                <!-- Product Quantity -->
-                <label for="editProductQuantity">Quantity:</label><br>
-                <input type="number" th:field="*{quantity}" id="editProductQuantity" name="productQuantity" min="0"><br><br>
-                
-                <!-- Save & Delete Buttons -->
-                <div class="modal-buttons">
-                    <button type="submit" class="button" name="action" value="save">Save</button>
-                    <button type="button" class="button" name="action" value="delete">Delete</button>
-                </div>
-            </form>
-        </div>
-    </div>
     
     <script>
     //
@@ -131,16 +97,6 @@
         btn.onclick = function() {
             modal.style.display = "block";
         }
-
-        // edit/delete modal
-        var editModal = document.getElementById("edit-product-modal");
-        var editBtns = document.getElementsByClassName("edit-product");
-
-        Array.from(editBtns).forEach(function(button) {
-                button.onclick = function() {
-                    editModal.style.display = "block";
-                }
-        });
 
         //close functionality for all modals
         var closeButtons = document.getElementsByClassName("close-button");

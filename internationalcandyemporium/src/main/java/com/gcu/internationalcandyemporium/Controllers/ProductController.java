@@ -28,11 +28,18 @@ public class ProductController {
         return "viewProduct";
     }    
 
+    @GetMapping("/edit/{productId}")
+    public String editProduct(@PathVariable String productId, Model model) {
+        ProductModel product = productService.findById(Long.parseLong(productId));
+        model.addAttribute("product", product);
+        return "editProduct";
+    }     
+
     @RequestMapping(value = "/update/{productId}", method = RequestMethod.GET)
     public String updateProduct(@PathVariable String productId, Model model) {
         ProductModel product = productService.getProductById(productId);
         model.addAttribute("product", product);
-        return "product/update";  // Assuming you have a Thymeleaf or JSP page for updating a product
+        return "editProduct";
     }
 
     @PostMapping(value = "/update")
