@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+      <div class="modal-content">
+        <a href="/">
+          <span class="back-button">🔙</span>
+        </a>
+        <h2>Edit Product</h2>
+        <form th:action="@{/products/update}" th:object="${product}" method="post">
+            <!-- Product Name -->
+            <label for="editProductName">Product Name:</label><br>
+            <input type="text" th:field="*{name}" id="editProductName" name="productName"><br>
+            
+            <!-- Product Description -->
+            <label for="editProductDescription">Product Description:</label><br>
+            <textarea rows="5" th:field="*{description}" id="editProductDescription" name="productDescription"></textarea><br>
+            
+            <!-- Product Image URL -->
+            <label for="editProductImageUrl">Product Image URL:</label><br>
+            <input type="url" th:field="*{imageUrl}" id="editProductImageUrl" name="productImageUrl"><br>
+            
+            <!-- Product Price -->
+            <label for="editProductPrice">Price:</label><br>
+            <input type="number" th:field="*{price}" id="editProductPrice" name="productPrice" min="0" step="0.01"><br>
+            
+            <!-- Product Quantity -->
+            <label for="editProductQuantity">Quantity:</label><br>
+            <input type="number" th:field="*{quantity}" id="editProductQuantity" name="productQuantity" min="0"><br><br>
+            
+            <!-- Save & Delete Buttons -->
+            <div class="modal-buttons">
+                <button type="submit" class="button" name="action" value="save">Save</button>
+                <button type="button" class="button" name="action" value="delete">Delete</button>
+            </div>
+        </form>
+      </div>
+  </div> 
+</body>
+</html>

@@ -29,19 +29,28 @@
                 <p>No Products Available</p>
             </div>
             <div th:each="product : ${products}" class="product">
-                <img class="productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
-                <p class="product-description" th:text="${product.name + ', ' + product.description + ' -- $' + product.price}">Product name, description</p>
-            <div class="add-to-cart-container">
-                <input class="quantity-select" type="number" min="1">
-                <button class="add-to-cart">+</button>
+                <a th:href="@{'products/' + ${product.id}}">
+                    <img class="view-product productImg" th:src="@{${product.imageUrl}}" alt="Product Image" onerror="this.src='missingCandy.webp'">
+                </a>
+                <p class="product-description" th:text="${product.name} + ' -- $' + ${product.price}">Product name, description</p>
+                <div class="product-actions-container">
+                        <div>
+                            <a th:href="@{'products/edit/' + ${product.id}}">
+                                <button class="edit-product product-actions">🖊️</button>
+                            </a>
+                        </div>
+
+                        <div>
+                            <button class="add-to-cart product-actions">+</button>
+                        </div>
+                </div>
             </div>
-            </div>
-        </div>        
+        </div>
+                
     </div>
-    <!-- Dialog Container -->
-    <div id="myModal" class="modal">
-  
-    <!-- Dialog content -->
+    <!-- Add Product Dialog Container -->
+    <div id="addProductModal" class="modal">
+    <!-- Add Product Dialog content -->
     <div class="modal-content">
       <span class="close-button">&times;</span>
       <h2>Add Product</h2>
@@ -52,7 +61,7 @@
         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
         <!-- description -->
         <label for="description">Product Description:</label><br>
-        <input type="text" th:field="*{description}"><br>
+        <textarea rows="5" type="text" th:field="*{description}"></textarea><br>
         <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</p>
         <!-- image -->
         <label for="imageUrl">Product Image URL:</label><br>
@@ -67,43 +76,46 @@
         <input type="number" value="0" th:field="*{quantity}" min="0"><br><br>
         <p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Qty Error</p>
         <!-- submit -->
-        <input class="button" type="submit" value="Add Product">
+        <div class="modal-buttons">
+            <input class="button" type="submit" value="Save ">
+        </div>
       </form>
     </div>
-  
   </div>
-  
+    
     <script>
-      function toggleDropdown() {
-          const dropdown = document.getElementById('dropdownMenu');
-          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-      }
-
-      // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
+    //
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+        // admin modal functionality
+        var modal = document.getElementById("addProductModal");
         var btn = document.getElementById("adminBtn");
+        var closeButtons = document.getElementsByClassName("close-button");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close-button")[0];
-
-        // When the user clicks the button, open the modal 
         btn.onclick = function() {
-        modal.style.display = "block";
+            modal.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-        modal.style.display = "none";
+        //close functionality for all modals
+        var closeButtons = document.getElementsByClassName("close-button");
+
+        for (let i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].onclick = function() {
+                var modal = this.closest(".modal");
+                if (modal) {
+                    modal.style.display = "none";
+                }
+            };
         }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+        // Clicking anywhere outside of any modal will close it
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = "none";
+            }
+        };
     </script>
 </body>
 </html>

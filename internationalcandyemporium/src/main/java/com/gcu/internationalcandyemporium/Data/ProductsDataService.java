@@ -73,12 +73,18 @@ public class ProductsDataService implements DataAccessInterface<ProductModel> {
 
     @Override
     public boolean update(ProductModel product) {
+
         return true;
     }
 
     @Override
     public boolean delete(ProductModel product) {
+        productRepository.delete(product);
         return true;
+    }
+
+    public ProductModel getProductById(String productId) {
+        return null;
     }
 
 }
