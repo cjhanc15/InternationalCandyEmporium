@@ -1,9 +1,11 @@
 package com.gcu.internationalcandyemporium.Models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class UserModel {
 
@@ -22,6 +24,8 @@ public class UserModel {
 
     private String phoneNumber;
     private String username;
+
+    @Size(max = 255)
     private String password;
 
     public UserModel() {
