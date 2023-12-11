@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .requestMatchers("/", "/index.html", "/*.js", "/*.map", "/*.css").permitAll()
                 .requestMatchers("/*.ico", "/*.png", "/*.svg", "/*.webapp").permitAll()
                 .requestMatchers("/*.ico", "/*.png", "/*.svg", "/*.webapp", "/*.woff", "/*.woff2", "/*.ttf", "/*.otf").permitAll() // Common web font extensions
-                .requestMatchers("/app/**").permitAll()
+                .requestMatchers("/app/**", "*/").permitAll()
                 .requestMatchers("/app/**", "/register/**").permitAll()  // Allow the registration page
                 .requestMatchers("/login").permitAll()  // Permit access to custom login page
             )

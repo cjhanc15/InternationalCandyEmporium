@@ -28,11 +28,6 @@ public class ProductController {
         return "viewProduct";
     }    
 
-    @GetMapping
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
-
     @GetMapping("/edit/{productId}")
     public String editProduct(@PathVariable String productId, Model model) {
         ProductModel product = productService.findById(Long.parseLong(productId));
